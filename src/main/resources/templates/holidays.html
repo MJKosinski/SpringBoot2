@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<H2>
+    Podaj rok oraz kod kraju:
+</H2>
+<form th:action="@{/holiday}" th:method="post">
+
+    <p>rok: <input type="text" th:name="year"></p>
+    <p>kod kraju: <input type="text" th:name="code"></p>
+    <div th:if="${hasErrors}" style="color: red">
+        PODAJ WŁAŚCIWE DANE!!!
+    </div>
+    <p>
+        <button type="submit">Znajdź święta!</button>
+    </p>
+
+</form>
+
+
+
+<div th:unless="${holidayList[0].getName()== null}">
+<table   border="1px">
+
+    <tr>
+        <th colspan="4" th:text="${holidayList[0].getCountryCode()}"></th>
+
+    </tr>
+ <tr>
+    <th>Data</th>
+    <th>Nazwa lokalna</th>
+    <th>Nazwa ogólna</th>
+    <th>data rozpoczęcia</th>
+    </tr>
+
+    <tr th:each="holiday: ${holidayList}">
+        <td th:text="${holiday.getDate()}"></td>
+        <td th:text="${holiday.getLocalName()}"></td>
+        <td th:text="${holiday.getName()}"></td>
+        <td th:text="${holiday.getLaunchYear()}"></td>
+
+    </tr>
+
+
+</table>
+</div>
+<p>
+    <a th:href="@{/}">powrót <-</a>
+</p>
+
+
+
+
+</body>
+</html>

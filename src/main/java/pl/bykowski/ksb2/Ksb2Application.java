@@ -18,13 +18,6 @@ public class Ksb2Application {
     }
 
 
-    @Bean
-    public Docket getDocket() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-    }
+
 
 }
